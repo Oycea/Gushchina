@@ -28,6 +28,9 @@ double** create_inverse_matrix(double** matrix, int size);
 //Создание единичной квадратной матрицы
 double** create_identity_matrix(int size);
 
+//Многочлен от матрицы
+double** polynominal_in_matrix(double** matrix_a, int size);
+
 //Умножение матрицы на матрицу
 double** matrix_multiplication_by_matrix(double** matrix_1, double** matrix_2, int size);
 
