@@ -124,6 +124,41 @@ double** create_identity_matrix(int size) {
 	return identity_matrix;
 }
 
+//Многочлен от матрицы
+double** polynominal_in_matrix(double** matrix_a, int size) {
+	double** matrix_b = create_zero_matrix(size);
+	double** matrix_res = create_zero_matrix(size);
+	matrix_b = matrix_multiplication_by_matrix(matrix_a, matrix_a, size); //Матрица А в квадрате
+	matrix_res = matrix_multiplication_by_matrix(matrix_a, matrix_b, size); //Матрица А в кубе
+
+	cout << "1) A^3 = " << endl;
+	output(matrix_res, size);
+
+	cout << "2) 2*A^3 = " << endl;
+	matrix_multiplication_by_number(matrix_res, 2, size);
+	output(matrix_res, size);
+
+	cout << "3) A^2 = " << endl;
+	output(matrix_b, size);
+
+	cout << "4) 2*A^3 = " << endl;
+	matrix_multiplication_by_number(matrix_b, 2, size);
+	output(matrix_b, size);
+
+	cout << "5) 2*A^3-2*A^2 = " << endl;
+	matrix_res = substraction_of_matrices(matrix_res, matrix_b, size);
+	output(matrix_res, size);
+
+	cout << "6) 2*A^3-2*A^2-A = " << endl;
+
+	matrix_res = substraction_of_matrices(matrix_res, matrix_a, size);
+	output(matrix_res, size);
+
+	cout << endl << "Result is: " << endl;
+	output(matrix_res, size);
+	return matrix_res;
+}
+
 //Умножение матрицы на матрицу
 double** matrix_multiplication_by_matrix(double** matrix_1, double** matrix_2, int size) {
 	double** matrix_res = create_zero_matrix(size);
