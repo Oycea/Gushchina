@@ -1,58 +1,58 @@
 #ifndef _MATRIX_OPERATION_H_
 #define _MATRIX_OPERATION_H_
 
-//Выделение памяти для матрицы
+//Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ РјР°С‚СЂРёС†С‹
 double** memory_allocation_matrix(int size);
 
-//Заполнение матрицы
+//Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†С‹
 double** input_matrix(int size);
 
-//Создание нулевой матрицы
+//РЎРѕР·РґР°РЅРёРµ РЅСѓР»РµРІРѕР№ РјР°С‚СЂРёС†С‹
 double** create_zero_matrix(int size);
 
-//Обнуление всех элементов матрицы
+//РћР±РЅСѓР»РµРЅРёРµ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹
 double** zero_matrix(double** matrix, int size);
 
-//Построение минора матрицы по выбранноиу элементу
+//РџРѕСЃС‚СЂРѕРµРЅРёРµ РјРёРЅРѕСЂР° РјР°С‚СЂРёС†С‹ РїРѕ РІС‹Р±СЂР°РЅРЅРѕРёСѓ СЌР»РµРјРµРЅС‚Сѓ
 double** create_minor(double** matr, int size, int row_idx, int column_idx);
 
-//Вычисление определителя матрицы
+//Р’С‹С‡РёСЃР»РµРЅРёРµ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РјР°С‚СЂРёС†С‹
 double calculating_determinant(double** matrix, int size);
 
-//Построение транспонированной матрицы
+//РџРѕСЃС‚СЂРѕРµРЅРёРµ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅРѕР№ РјР°С‚СЂРёС†С‹
 double** create_transposed_matrix(double** matrix, int size);
 
-//Построение обратной матрицы
+//РџРѕСЃС‚СЂРѕРµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹
 double** create_inverse_matrix(double** matrix, int size);
 
-//Создание единичной квадратной матрицы
+//РЎРѕР·РґР°РЅРёРµ РµРґРёРЅРёС‡РЅРѕР№ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹
 double** create_identity_matrix(int size);
 
-//Многочлен от матрицы
-double** polynominal_in_matrix(double** matrix_a, int size);
-
-//Умножение матрицы на матрицу
+//РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РјР°С‚СЂРёС†Сѓ
 double** matrix_multiplication_by_matrix(double** matrix_1, double** matrix_2, int size);
 
-//Умножение матрицы на число
+//РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° С‡РёСЃР»Рѕ
 double** matrix_multiplication_by_number(double** matrix, int k, int size);
 
-//Разность двух матриц
+//Р Р°Р·РЅРѕСЃС‚СЊ РґРІСѓС… РјР°С‚СЂРёС†
 double** substraction_of_matrices(double** matrix_1, double** matrix_2, int size);
 
-//Сумма двух матриц
+//РЎСѓРјРјР° РґРІСѓС… РјР°С‚СЂРёС†
 double** sum_of_matrices(double** matrix_1, double** matrix_2, int size);
 
-//Копирование элементов из одной матрицы в другую
+//РљРѕРїРёСЂРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РёР· РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹ РІ РґСЂСѓРіСѓСЋ
 double** copy_elements(double** matrix_1, double** matrix_2, int size);
 
-//Проверка матриц на равенство
+//РџСЂРѕРІРµСЂРєР° РјР°С‚СЂРёС† РЅР° СЂР°РІРµРЅСЃС‚РІРѕ
 bool is_identity_matrix(double** matrix_1, double** matrix_2, int size);
 
-//Вывод матрицы
+//Р’С‹РІРѕРґ РјР°С‚СЂРёС†С‹
 void output(double** matrix, int size);
 
-//Освобождение памяти матрицы
+//Р РµС€РµРЅРёРµ РјР°С‚СЂРёС‡РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ 5*РҐ + РҐ*Рђ = Р’ СЃ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Рј РІС‹РІРѕРґРѕРј
+bool equation_solution(double** matrix_a, double** matrix_b, int size);
+
+//РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РјР°С‚СЂРёС†С‹
 void free(double** matrix, int size);
 
 #endif //_MATRIX_OPERATION_H_
