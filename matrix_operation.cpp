@@ -4,7 +4,7 @@
 #include"matrix_operation.h"
 using namespace std;
 
-//Выделение памяти для матрицы
+//Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ РјР°С‚СЂРёС†С‹
 double** memory_allocation_matrix(int size) {
 	double** matrix = new double* [size];
 	for (int i = 0; i < size; i++)
@@ -12,7 +12,7 @@ double** memory_allocation_matrix(int size) {
 	return matrix;
 }
 
-//Заполнение матрицы
+//Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†С‹
 double** input_matrix(int size) {
 	double** matrix = memory_allocation_matrix(size);
 	for (int i = 0; i < size; i++)
@@ -21,7 +21,7 @@ double** input_matrix(int size) {
 	return matrix;
 }
 
-//Создание нулевой матрицы
+//РЎРѕР·РґР°РЅРёРµ РЅСѓР»РµРІРѕР№ РјР°С‚СЂРёС†С‹
 double** create_zero_matrix(int size) {
 	double** matrix = memory_allocation_matrix(size);
 	for (int i = 0; i < size; i++)
@@ -30,7 +30,7 @@ double** create_zero_matrix(int size) {
 	return matrix;
 }
 
-//Обнуление всех элементов матрицы
+//РћР±РЅСѓР»РµРЅРёРµ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹
 double** zero_matrix(double** matrix, int size) {
 	for (int i = 0; i < size; i++)
 		for (int j = 0; j < size; j++)
@@ -38,7 +38,7 @@ double** zero_matrix(double** matrix, int size) {
 	return matrix;
 }
 
-//Построение минора матрицы
+//РџРѕСЃС‚СЂРѕРµРЅРёРµ РјРёРЅРѕСЂР° РјР°С‚СЂРёС†С‹
 double** create_minor(double** matr, int size, int row_idx, int column_idx) {
 	double** minor;
 	if (size == 1) {
@@ -63,7 +63,7 @@ double** create_minor(double** matr, int size, int row_idx, int column_idx) {
 	return minor;
 }
 
-//Вычисление определителя матрицы
+//Р’С‹С‡РёСЃР»РµРЅРёРµ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РјР°С‚СЂРёС†С‹
 double calculating_determinant(double** matrix, int size) {
 	if (size == 1)
 		return matrix[0][0];
@@ -87,7 +87,7 @@ double calculating_determinant(double** matrix, int size) {
 	return det;
 }
 
-//Построение транспонированной матрицы
+//РџРѕСЃС‚СЂРѕРµРЅРёРµ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅРѕР№ РјР°С‚СЂРёС†С‹
 double** create_transposed_matrix(double** matrix, int size) {
 	double** transposed_matrix = create_zero_matrix(size);
 	for (int i = 0; i < size; i++)
@@ -96,7 +96,7 @@ double** create_transposed_matrix(double** matrix, int size) {
 	return transposed_matrix;
 }
 
-//Построение обратной матрицы
+//РџРѕСЃС‚СЂРѕРµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹
 double** create_inverse_matrix(double** matrix, int size) {
 	double det_minor;
 	double det_matrix = calculating_determinant(matrix, size);
@@ -114,7 +114,7 @@ double** create_inverse_matrix(double** matrix, int size) {
 	return inverse_matrix;
 }
 
-//Создание единичной квадратной матрицы
+//РЎРѕР·РґР°РЅРёРµ РµРґРёРЅРёС‡РЅРѕР№ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹
 double** create_identity_matrix(int size) {
 	double** identity_matrix = create_zero_matrix(size);
 	for (int i = 0; i < size; i++)
@@ -124,42 +124,7 @@ double** create_identity_matrix(int size) {
 	return identity_matrix;
 }
 
-//Многочлен от матрицы
-double** polynominal_in_matrix(double** matrix_a, int size) {
-	double** matrix_b = create_zero_matrix(size);
-	double** matrix_res = create_zero_matrix(size);
-	matrix_b = matrix_multiplication_by_matrix(matrix_a, matrix_a, size); //Матрица А в квадрате
-	matrix_res = matrix_multiplication_by_matrix(matrix_a, matrix_b, size); //Матрица А в кубе
-
-	cout << "1) A^3 = " << endl;
-	output(matrix_res, size);
-
-	cout << "2) 2*A^3 = " << endl;
-	matrix_multiplication_by_number(matrix_res, 2, size);
-	output(matrix_res, size);
-
-	cout << "3) A^2 = " << endl;
-	output(matrix_b, size);
-
-	cout << "4) 2*A^3 = " << endl;
-	matrix_multiplication_by_number(matrix_b, 2, size);
-	output(matrix_b, size);
-
-	cout << "5) 2*A^3-2*A^2 = " << endl;
-	matrix_res = substraction_of_matrices(matrix_res, matrix_b, size);
-	output(matrix_res, size);
-
-	cout << "6) 2*A^3-2*A^2-A = " << endl;
-
-	matrix_res = substraction_of_matrices(matrix_res, matrix_a, size);
-	output(matrix_res, size);
-
-	cout << endl << "Result is: " << endl;
-	output(matrix_res, size);
-	return matrix_res;
-}
-
-//Умножение матрицы на матрицу
+//РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РјР°С‚СЂРёС†Сѓ
 double** matrix_multiplication_by_matrix(double** matrix_1, double** matrix_2, int size) {
 	double** matrix_res = create_zero_matrix(size);
 	for (int i = 0; i < size; i++) {
@@ -172,7 +137,7 @@ double** matrix_multiplication_by_matrix(double** matrix_1, double** matrix_2, i
 	return matrix_res;
 }
 
-//Умножение матрицы на число
+//РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° С‡РёСЃР»Рѕ
 double** matrix_multiplication_by_number(double** matrix, int k, int size) {
 	for (int i = 0; i < size; i++)
 		for (int j = 0; j < size; j++)
@@ -180,7 +145,7 @@ double** matrix_multiplication_by_number(double** matrix, int k, int size) {
 	return matrix;
 }
 
-//Разность двух матриц
+//Р Р°Р·РЅРѕСЃС‚СЊ РґРІСѓС… РјР°С‚СЂРёС†
 double** substraction_of_matrices(double** matrix_1, double** matrix_2, int size) {
 	double** matrix_res = create_zero_matrix(size);
 	for (int i = 0; i < size; i++)
@@ -189,7 +154,7 @@ double** substraction_of_matrices(double** matrix_1, double** matrix_2, int size
 	return matrix_res;
 }
 
-//Сумма двух матриц
+//РЎСѓРјРјР° РґРІСѓС… РјР°С‚СЂРёС†
 double** sum_of_matrices(double** matrix_1, double** matrix_2, int size) {
 	double** matrix_res = create_zero_matrix(size);
 	for (int i = 0; i < size; i++)
@@ -199,7 +164,7 @@ double** sum_of_matrices(double** matrix_1, double** matrix_2, int size) {
 }
 
 
-//Копирование элементов из одной матрицы в другую
+//РљРѕРїРёСЂРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РёР· РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹ РІ РґСЂСѓРіСѓСЋ
 double** copy_elements(double** matrix_1, double** matrix_2, int size) {
 	for (int i = 0; i < size; i++)
 		for (int j = 0; j < size; j++)
@@ -207,7 +172,7 @@ double** copy_elements(double** matrix_1, double** matrix_2, int size) {
 	return matrix_2;
 }
 
-//Проверка матриц на равенство
+//РџСЂРѕРІРµСЂРєР° РјР°С‚СЂРёС† РЅР° СЂР°РІРµРЅСЃС‚РІРѕ
 bool is_identity_matrix(double** matrix_1, double** matrix_2, int size) {
 	for (int i = 0; i < size; i++)
 		for (int j = 0; j < size; j++)
@@ -216,7 +181,7 @@ bool is_identity_matrix(double** matrix_1, double** matrix_2, int size) {
 	return true;
 }
 
-//Вывод матрицы
+//Р’С‹РІРѕРґ РјР°С‚СЂРёС†С‹
 void output(double** matrix, int size) {
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++)
@@ -225,7 +190,48 @@ void output(double** matrix, int size) {
 	}
 }
 
-//Освобождение памяти матрицы
+//Р РµС€РµРЅРёРµ РјР°С‚СЂРёС‡РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ 5*РҐ + РҐ*Рђ = Р’ СЃ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Рј РІС‹РІРѕРґРѕРј
+bool equation_solution(double** matrix_a, double** matrix_b, int size) {
+	double det;
+	double** matrix_x = create_zero_matrix(size);
+	if (size == 1) {
+		cout << "РџСЂРµРѕР±СЂР°Р·СѓРµРј Рє РІРёРґСѓ X * (1 + " << matrix_a[0][0] << ") = " << matrix_b[0][0] << endl;
+		cout << "Р’С‹С‡РёСЃР»РёРј X * " << matrix_a[0][0] + 5 << " = " << matrix_b[0][0] << endl;
+		cout << "РћРўР’Р•Рў: " << matrix_b[0][0] / (matrix_a[0][0] + 5) << endl;
+		return true;
+	}
+	else {
+		//Р РµС€РµРЅРёРµ СѓСЂР°РІРЅРµРЅРёСЏ СЃ РїРѕСЌС‚Р°РїРЅС‹Рј РІС‹РІРѕРґРѕРј
+		cout << "РџСЂРµРѕР±СЂР°Р·СѓРµРј РІС‹СЂР°Р¶РµРЅРёРµ Рє РІРёРґСѓ РҐ(5Р• + Рђ) = Р’ " << endl;
+		cout << "5Р• = " << endl;
+		double** identity_matrix = create_identity_matrix(size);
+		identity_matrix = matrix_multiplication_by_number(identity_matrix, 5, size);
+		output(identity_matrix, size);
+
+		cout << endl << "5Р• + Рђ = " << endl;
+		matrix_a = sum_of_matrices(matrix_a, identity_matrix, size);
+		output(matrix_a, size);
+
+		cout << endl << "Р”Р»СЏ РґРµР»РµРЅРёСЏ Р’ РЅР° РїРѕР»СѓС‡РёРІС€СѓСЋСЃСЏ СЃСѓРјРјСѓ РЅР°Р№РґС‘Рј РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ Рє 5Р• + Рђ" << endl;
+		det = calculating_determinant(matrix_a, size);
+		if (det == 0) {
+			cout << "Р’С‹С‡РёСЃР»РµРЅРёСЏ РЅРµРІРѕР·РјРѕР¶РЅС‹" << endl;
+			return false;
+		}
+		matrix_a = create_inverse_matrix(matrix_a, size);
+		output(matrix_a, size);
+
+		cout << endl << endl << "СѓРјРЅРѕР¶РёРј РЅР° РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ РјР°С‚СЂРёС†Сѓ Р’" << endl;
+		cout << "РћС‚РІРµС‚: " << endl;
+		matrix_x = matrix_multiplication_by_matrix(matrix_a, matrix_b, size);
+		//Р’С‹РІРѕРґ РѕС‚РІРµС‚Р°
+		output(matrix_x, size);
+		free(matrix_x, size);
+		return true;
+	}
+}
+
+//РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РјР°С‚СЂРёС†С‹
 void free(double** matrix, int size) {
 	for (int i = 0; i < size; i++)
 		delete[] matrix[i];
