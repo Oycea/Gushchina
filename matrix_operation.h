@@ -37,6 +37,9 @@ double** matrix_multiplication_by_matrix(double** matrix_1, double** matrix_2, i
 //Умножение матрицы на число
 double** matrix_multiplication_by_number(double** matrix, int k, int size);
 
+//функция сложения квадратной матрицы с числом
+double** sqr_matrix_addition_num(double** matr, int size, int num);
+
 //Разность двух матриц
 double** substraction_of_matrices(double** matrix_1, double** matrix_2, int size);
 
@@ -53,9 +56,12 @@ bool is_identity_matrix(double** matrix_1, double** matrix_2, int size);
 void output(double** matrix, int size);
 
 //Решение матричного уравнения 5*Х + Х*А = В с промежуточным выводом
-bool equation_solution(double** matrix_a, double** matrix_b, int size);
+double** equation_solution(double** matrix_a, double** matrix_b, int size);
 
 //Освобождение памяти матрицы
 void free(double** matrix, int size);
+
+//Проверка матрицы на ортогональность
+void matrix_orthogonality_checker(double** matrix, int size);
 
 #endif //_MATRIX_OPERATION_H_
